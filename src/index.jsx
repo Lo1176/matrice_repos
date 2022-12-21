@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import ReactDOM from "react-dom"
 import InputForm from "./InputForm";
 import ListTasks from "./ListTasks";
+import ProgressBar from "./ProgressBar";
 
 function App() {
   // state (état, données)
@@ -48,6 +49,7 @@ function App() {
   // affichage (render)
   return (
     <div className="">
+        <ProgressBar />
       <ListTasks tasks={tasks} handleDelete={handleDelete} />
       <InputForm
         value={newTask}
