@@ -28,9 +28,11 @@ function App() {
     //1. copy du state
     const tasksCopy = [...tasks];
     //2. manipulation de la copy
-    const id = new Date().getTime
+    const id = new Date().getTime;
+    const name = newTask;
+    tasksCopy.push( {id: id, name: name} )
     //3. modify state withis its setter
-    setTasks()
+    setTasks(tasksCopy);
   };
 
   const handleChange =(event) => {
