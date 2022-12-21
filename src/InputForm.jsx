@@ -3,7 +3,7 @@ import React from 'react'
 export default function InputForm(props) {
     return (
         <>
-            <p>New task</p>
+            <p>New task:</p>
             <form action="submit" onSubmit={props.handleSubmit}>
             <input
                 value={props.value} 

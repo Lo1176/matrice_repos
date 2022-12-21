@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import ReactDOM from "react-dom"
 import InputForm from "./InputForm";
+import ListTasks from "./ListTasks";
 
 function App() {
   // state (état, données)
@@ -24,7 +25,7 @@ function App() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    alert(newTask);
+    // alert(newTask);
     //1. copy du state
     const tasksCopy = [...tasks];
     //2. manipulation de la copy
@@ -47,21 +48,7 @@ function App() {
   // affichage (render)
   return (
     <div className="">
-      <h1>My tasks</h1>
-      <ul>
-        {tasks.map((task) => (
-          <li key={task.id}>
-            {task.name}
-            {"  "}
-            <button
-              className="btn btn-danger"
-              onClick={() => handleDelete(task.id)}
-            >
-              x
-            </button>
-          </li>
-        ))}
-      </ul>
+      <ListTasks tasks={tasks} handleDelete={handleDelete} />
       <InputForm
         value={newTask}
         handleSubmit={handleSubmit}
