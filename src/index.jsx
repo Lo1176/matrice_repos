@@ -25,7 +25,7 @@ function App() {
   const [countChecked, setCountChecked] = useState(0);
   // afficher la task à faire avec Do now Btn
   // const [show, setShow] = useState(true);
-  const [doTheTask, setDoTheTask] = useState();
+  const [doTheTask, setDoTheTask] = useState("Not currently doing anything");
 
   // comportements
   const handleDelete = (id) => {
@@ -75,13 +75,16 @@ function App() {
   };
 
   const handleDoingTask = (task, index) => {
-    console.log(task.name);
+    // console.log(task.name);
     resetDoingNow(tasksCopy);
     tasksCopy.splice(index, 1, {
       ...task,
       doingTask: !task.doingTask,
     });
     setTasks(tasksCopy);
+    const showTheTask = tasksCopy.filter((task) => task.doingTask === true);
+    if (showTheTask[0].name) {setDoTheTask(showTheTask[0].name);}
+    console.log("doTheTask " + doTheTask);
   };
 
   const resetDoingNow = (tasksCopy) => {    
@@ -130,7 +133,7 @@ function App() {
         />
       </div>
       <div className="right">
-        <CurentlyDoing tasks={tasks} />
+        <CurentlyDoing doTheTask={doTheTask} />
       </div>
     </div>
   );
