@@ -1,10 +1,10 @@
-import React from 'react'
+import React from "react";
 
 export default function ListTasks(props) {
   // console.log(props.countChecked)
   // count the number of checkboxes checked
   props.progessBarFcn(props.tasks);
-  
+
   return (
     <>
       <h1>My tasks</h1>
@@ -21,12 +21,18 @@ export default function ListTasks(props) {
                 id={task.id}
                 // defaultChecked={false}
                 // checked={task.checked}
-                
+
                 onChange={() => props.handleChecked(task, index)}
               />
             </div>
             {task.name + " "}
             {"  "}
+            <button
+              className="do-now btn btn-outline-info"
+              onClick={() => props.handleDoingTask(task, index)}
+            >
+              {!task.doingTask ? "do now?" : "do now"}
+            </button>
             <button
               className="btn btn-danger"
               onClick={() => props.handleDelete(task.id)}
@@ -34,9 +40,10 @@ export default function ListTasks(props) {
               x
             </button>
           </li>
-          // ,
-          // console.log(task.checked)
-        ))}
+          // ,console.log(task.name)
+          // console.log(task.name)
+        )
+        )}
       </ul>
     </>
   );
