@@ -4,6 +4,7 @@ export default function ListTasks(props) {
   // console.log(props.countChecked)
   // count the number of checkboxes checked
   props.progessBarFcn(props.tasks);
+  // props.removeBtnDoNow(props.tasks);
 
   return (
     <>
@@ -14,7 +15,7 @@ export default function ListTasks(props) {
             className="d-flex align-items-center justify-content-between m-3"
             key={task.id}
           >
-            <div className="form-group form-check">
+            {/* <div className="form-group form-check"> */}
               <input
                 type="checkbox"
                 className="form-check-input"
@@ -24,26 +25,29 @@ export default function ListTasks(props) {
 
                 onChange={() => props.handleChecked(task, index)}
               />
-            </div>
+            {/* </div> */}
             {task.name + " "}
             {"  "}
-            <button
-              className="do-now btn btn-outline-info"
-              onClick={() => props.handleDoingTask(task, index)}
-            >
-              {!task.doingTask ? "do now?" : "do now"}
-            </button>
-            <button
-              className="btn btn-danger"
-              onClick={() => props.handleDelete(task.id)}
-            >
-              x
-            </button>
+            <div className="right_btn">
+              <button
+                className="do-now btn btn-outline-info mr-3"
+                key={index}
+                onClick={() => props.handleDoingTask(task, index)}
+                >
+                {!task.doingTask ? "do now?" : "do now"}
+              </button>
+              <button
+                className="btn btn-danger"
+                onClick={() => props.handleDelete(task.id)}
+              >
+                x
+              </button>
+
+            </div>
           </li>
           // ,console.log(task.name)
           // console.log(task.name)
-        )
-        )}
+        ))}
       </ul>
     </>
   );

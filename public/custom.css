@@ -1,0 +1,12 @@
+/* input[type=checkbox] {
+  display: none;
+  background-color: red;
+} */
+
+input[type=checkbox]:checked ~ .right_btn button.do-now{ 
+  opacity: 0;
+  height: 0;
+  display: none;
+  /* height: 32px; */
+  /* border: 2px, solid, red; */
+}

@@ -71,8 +71,31 @@ function App() {
       checked: !task.checked,
     });
     setTasks(tasksCopy);
-    // IDEE OPTION changer le style de name (rayer, plus clair)
   };
+
+  const removeBtnDoNow = (tasks) => {
+    tasks.map((task, index) => {
+      // if cheched === true, do-now btn d-none
+      const doNow = document.body.getElementsByClassName("do-now");
+      if (task.checked === true) {
+        doNow[index].classList.add('d-none')
+        // console.log(task.name + ": " + task.checked)
+        // // document.getElementsByClassName
+        console.log("doNow index: " + doNow[index])
+        // doNow.classList.add("d-none")
+      } else {
+        console.log("remove this class " +index );
+        console.log(doNow);
+        if (task.checked !== true && doNow[index].classList.contains("d-none")) {
+          // doNow[index].classList.remove("d-none");
+          // console.log('remove this class')
+        }
+
+      }
+      return 'yeah'
+      // IDEE OPTION changer le style de name (rayer, plus clair)
+    })
+  }
 
   const handleDoingTask = (task, index) => {
     // console.log(task.name);
@@ -124,6 +147,7 @@ function App() {
           handleChecked={handleCheck}
           progessBarFcn={progessBarFcn}
           handleDoingTask={handleDoingTask}
+          // removeBtnDoNow={removeBtnDoNow}
         />
 
         <InputForm
