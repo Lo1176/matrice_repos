@@ -2,9 +2,9 @@ import React from 'react';
 
 const ProgressBar = (props) => {
     return (
-      <>
-        <p>Progress:</p>
-        <div className="progress">
+      <div className='d-flex'>
+        Progress:
+        <div className="progress mx-2 w-75">
           <div
             className="progress-bar bg-success"
             style={props.styleNow}
@@ -14,7 +14,7 @@ const ProgressBar = (props) => {
             aria-valuemax="100"
           ></div>
         </div>
-      </>
+      </div>
     );
 }
 

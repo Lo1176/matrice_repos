@@ -54,9 +54,6 @@ function App() {
   };
 
   /** do now */
-  // const toggleTask = () => {
-  //   setShow(!show);
-  // }
 
   /** ProgressBar */
   const progressBarValue = {
@@ -73,30 +70,6 @@ function App() {
     setTasks(tasksCopy);
   };
 
-  const removeBtnDoNow = (tasks) => {
-    tasks.map((task, index) => {
-      // if cheched === true, do-now btn d-none
-      const doNow = document.body.getElementsByClassName("do-now");
-      if (task.checked === true) {
-        doNow[index].classList.add('d-none')
-        // console.log(task.name + ": " + task.checked)
-        // // document.getElementsByClassName
-        console.log("doNow index: " + doNow[index])
-        // doNow.classList.add("d-none")
-      } else {
-        console.log("remove this class " +index );
-        console.log(doNow);
-        if (task.checked !== true && doNow[index].classList.contains("d-none")) {
-          // doNow[index].classList.remove("d-none");
-          // console.log('remove this class')
-        }
-
-      }
-      return 'yeah'
-      // IDEE OPTION changer le style de name (rayer, plus clair)
-    })
-  }
-
   const handleDoingTask = (task, index) => {
     // console.log(task.name);
     resetDoingNow(tasksCopy);
@@ -107,17 +80,16 @@ function App() {
     setTasks(tasksCopy);
     const showTheTask = tasksCopy.filter((task) => task.doingTask === true);
     if (showTheTask[0].name) {setDoTheTask(showTheTask[0].name);}
-    console.log("doTheTask " + doTheTask);
+    // console.log("doTheTask " + doTheTask);
   };
 
   const resetDoingNow = (tasksCopy) => {    
     setTasks(
       tasksCopy.forEach(task => {
-        console.log(task.name + " " + task.doingTask) 
+        // console.log(task.name + " " + task.doingTask) 
         task.doingTask = false 
-      })
-      
-      );
+      })  
+    );
   };
 
   const counterCheckedBoxes = (tasks) => {
@@ -135,8 +107,8 @@ function App() {
 
   // affichage (render)
   return (
-    <div className="dash">
-      <div className="left">
+    <>
+      <div className="col-xl-6 p-4">
         <ProgressBar
           progressValueNow={barStyleNow}
           styleNow={progressBarValue}
@@ -147,7 +119,6 @@ function App() {
           handleChecked={handleCheck}
           progessBarFcn={progessBarFcn}
           handleDoingTask={handleDoingTask}
-          // removeBtnDoNow={removeBtnDoNow}
         />
 
         <InputForm
@@ -156,10 +127,10 @@ function App() {
           handleChange={handleChange}
         />
       </div>
-      <div className="right">
+      <div className="col-xl-6 p-4 bg-info">
         <CurentlyDoing doTheTask={doTheTask} />
       </div>
-    </div>
+    </>
   );
 }
 

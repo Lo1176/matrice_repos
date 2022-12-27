@@ -15,25 +15,22 @@ export default function ListTasks(props) {
             className="d-flex align-items-center justify-content-between m-3"
             key={task.id}
           >
-            {/* <div className="form-group form-check"> */}
-              <input
-                type="checkbox"
-                className="form-check-input"
-                id={task.id}
-                // defaultChecked={false}
-                // checked={task.checked}
+            <input
+              type="checkbox"
+              className="form-check-input"
+              id={task.id}
+              // defaultChecked={false}
+              // checked={task.checked}
 
-                onChange={() => props.handleChecked(task, index)}
-              />
-            {/* </div> */}
-            {task.name + " "}
-            {"  "}
+              onChange={() => props.handleChecked(task, index)}
+            />
+            <p className="pl-2 mb-0">{task.name + " "}</p>
             <div className="right_btn">
               <button
                 className="do-now btn btn-outline-info mr-3"
                 key={index}
                 onClick={() => props.handleDoingTask(task, index)}
-                >
+              >
                 {!task.doingTask ? "do now?" : "do now"}
               </button>
               <button
@@ -42,11 +39,9 @@ export default function ListTasks(props) {
               >
                 x
               </button>
-
             </div>
           </li>
           // ,console.log(task.name)
-          // console.log(task.name)
         ))}
       </ul>
     </>
