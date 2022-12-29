@@ -4,6 +4,8 @@
 } */
 :root {
     --sable: #F9F4EA;
+    --info: #2AA2B8;
+    --gray: #C6C4C2;
 }
 .dash {
     background-color: white;
@@ -12,8 +14,9 @@
     -moz-box-shadow: 1px 0px 5px 2px rgba(0,0,0,0.1);
 }
 
-.dashboard, .float-lg-right {
-    background-color: var(--sable);
+.bg-sable {
+  background-color: var(--sable);
+
 }
 
 input[type=checkbox]:checked ~ p {
@@ -28,3 +31,12 @@ input[type=checkbox]:checked ~ .right_btn button.do-now{
   /* height: 32px; */
   /* border: 2px, solid, red; */
 }
+
+.btn-done {
+  background-color: var(--info);
+}
+
+.btn-not-done {
+  background-color: var(--gray);
+}
+

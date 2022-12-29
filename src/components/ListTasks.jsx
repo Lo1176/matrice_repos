@@ -21,6 +21,8 @@ export default function ListTasks(props) {
               id={task.id}
               // defaultChecked={false}
               // checked={task.checked}
+              // defaultChecked="false"
+              // {`${task.focus ? true : false}`}
 
               onChange={() => props.handleChecked(task, index)}
             />
@@ -29,9 +31,9 @@ export default function ListTasks(props) {
               <button
                 className="do-now btn btn-outline-info mr-3"
                 key={index}
-                onClick={() => props.handleDoingTask(task, index)}
+                onClick={() => props.handleFocus(task, index)}
               >
-                {!task.doingTask ? "do now?" : "do now"}
+                {!task.focus ? "do now?" : "do now"}
               </button>
               <button
                 className="btn btn-danger"

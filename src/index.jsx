@@ -4,19 +4,15 @@ import InputForm from "./components/InputForm";
 import ListTasks from "./components/ListTasks";
 import ProgressBar from "./components/ProgressBar";
 import CurentlyDoing from "./components/CurentlyDoing";
+import BtnImDone from "./components/BtnImDone";
 
 function App() {
   // state (état, données)
   const [tasks, setTasks] = useState([
-    { id: 1, name: "learning hooks", checked: false, doingTask: false },
-    { id: 2, name: "cyber security", checked: false, doingTask: false },
-    { id: 3, name: "apprendre à tricoter", checked: false, doingTask: false },
-    {
-      id: 4,
-      name: "faire 20 pompes sur 2 doigts",
-      checked: false,
-      doingTask: false,
-    },
+    { id: 1, name: "learning hooks", checked: false, focus: false },
+    { id: 2, name: "cyber security", checked: false, focus: false },
+    { id: 3, name: "apprendre à tricoter", checked: false, focus: false },
+    { id: 4, name: "faire 20 pompes sur 2 doigts", checked: false, focus: false },
   ]);
   const [newTask, setNewTask] = useState("");
   // barStyleNow must be a % of tasks.length
@@ -26,6 +22,8 @@ function App() {
   // afficher la task à faire avec Do now Btn
   // const [show, setShow] = useState(true);
   const [doTheTask, setDoTheTask] = useState("Not currently doing anything");
+  // btn active
+  const [btnActive, setBtnActive] = useState(false)
 
   // comportements
   const handleDelete = (id) => {
@@ -44,7 +42,7 @@ function App() {
     //2. manipulation de la copy
     const id = new Date().getTime;
     const name = newTask;
-    tasksCopy.push({ id: id, name: name, checked: false, doingTask: false });
+    tasksCopy.push({ id: id, name: name, checked: false, focus: false });
     //3. modify state withis its setter
     setTasks(tasksCopy);
   };
@@ -70,27 +68,36 @@ function App() {
     setTasks(tasksCopy);
   };
 
-  const handleDoingTask = (task, index) => {
+  const handleFocus = (task, index) => {
     // console.log(task.name);
-    resetDoingNow(tasksCopy);
     tasksCopy.splice(index, 1, {
       ...task,
-      doingTask: !task.doingTask,
+      focus: !task.focus,
     });
     setTasks(tasksCopy);
-    const showTheTask = tasksCopy.filter((task) => task.doingTask === true);
-    if (showTheTask[0].name) {setDoTheTask(showTheTask[0].name);}
+    const showTheTask = tasksCopy.filter((task) => task.focus === true);
+    // show task name
+    if (showTheTask[0].name) {
+      console.log(showTheTask[0]);
+      setDoTheTask(showTheTask[0].name)
+      setBtnActive(showTheTask[0].focus);  
+      
+    }
+    // abled btn-done
+    
+    // resetDoingNow(tasksCopy);
     // console.log("doTheTask " + doTheTask);
   };
 
   const resetDoingNow = (tasksCopy) => {    
     setTasks(
       tasksCopy.forEach(task => {
-        // console.log(task.name + " " + task.doingTask) 
-        task.doingTask = false 
+        task.focus = false 
       })  
     );
   };
+
+  // const 
 
   const counterCheckedBoxes = (tasks) => {
     let count = 0;
@@ -118,7 +125,7 @@ function App() {
           handleDelete={handleDelete}
           handleChecked={handleCheck}
           progessBarFcn={progessBarFcn}
-          handleDoingTask={handleDoingTask}
+          handleFocus={handleFocus}
         />
 
         <InputForm
@@ -127,8 +134,9 @@ function App() {
           handleChange={handleChange}
         />
       </div>
-      <div className="col-xl-6 p-4 bg-info">
+      <div className="col-xl-6 p-4 bg-sable text-center">
         <CurentlyDoing doTheTask={doTheTask} />
+        <BtnImDone btnActive={btnActive} setBtnActive ={setBtnActive}/>
       </div>
     </>
   );
